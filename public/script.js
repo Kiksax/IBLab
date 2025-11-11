@@ -19,8 +19,10 @@ function switchPages() {
 
 document.getElementById('register-form').addEventListener('submit', async (e) => {
   e.preventDefault();
+  const emailInput = document.getElementById('register-email');
   const usernameInput = document.getElementById('register-username');
   const passwordInput = document.getElementById('register-password');
+  const email = emailInput.value;
   const username = usernameInput.value;
   const password = passwordInput.value;
   
@@ -28,18 +30,20 @@ document.getElementById('register-form').addEventListener('submit', async (e) =>
     const res = await fetch('/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, password })
+      body: JSON.stringify({ email, username, password })
     });
 
     const data = await res.json();
     if (res.ok) {
       alert(data.message);
       // Clear the input fields after successful registration
+      emailInput.value = '';
       usernameInput.value = '';
       passwordInput.value = '';
       // Switch to login page
       showPage('login');
       // Pre-fill the login username field
+      document.getElementById('login-email').value = email;
       document.getElementById('login-username').value = username;
     } else {
       alert(data.message);
@@ -52,8 +56,10 @@ document.getElementById('register-form').addEventListener('submit', async (e) =>
 
 document.getElementById('login-form').addEventListener('submit', async (e) => {
   e.preventDefault();
+  const emailInput = document.getElementById('login-email');
   const usernameInput = document.getElementById('login-username');
   const passwordInput = document.getElementById('login-password');
+  const email = emailInput.value;
   const username = usernameInput.value;
   const password = passwordInput.value;
   
@@ -61,15 +67,14 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
     const res = await fetch('/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, password })
+      body: JSON.stringify({ email, username, password })
     });
     
     const data = await res.json();
     if (res.ok) {
       alert('✅ ' + data.message);
-      // Clear the input fields after successful login
-      usernameInput.value = '';
-      passwordInput.value = '';
+      // Redirect to success page after successful login
+      window.location.href = '/success.html';
     } else {
       alert('❌ ' + data.message);
     }

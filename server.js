@@ -25,28 +25,28 @@ const saveUsers = (data) => fs.writeFileSync(usersFile, JSON.stringify(data, nul
 
 // Registration
 app.post('/register', (req, res) => {
-  const { username, password } = req.body;
+  const { email,username, password } = req.body;
   const users = readUsers();
 
-  if (users.find(u => u.username === username))
+  if ((users.find(u => u.email === email))||(users.find(u => u.username === username)))
     return res.status(400).json({ message: 'User already exists' });
 
   const hash = bcrypt.hashSync(password, 10);
-  users.push({ username, password: hash });
+  users.push({ email, username, password: hash });
   saveUsers(users);
   res.json({ message: 'Registration successful!' });
 });
 
 // Login
 app.post('/login', (req, res) => {
-  const { username, password } = req.body;
+  const { email, username, password } = req.body;
   const users = readUsers();
   const user = users.find(u => u.username === username);
 
   if (!user || !bcrypt.compareSync(password, user.password))
     return res.status(401).json({ message: 'Invalid credentials, try again' });
 
-  res.cookie('session', username, { httpOnly: true });
+  res.cookie('session', email, username, { httpOnly: true });
   res.json({ message: 'Login successful!' });
 });
 

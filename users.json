@@ -14,5 +14,22 @@
   {
     "username": "kikotest",
     "password": "$2b$10$uO6sQRTj3kF9.4Okc1JGu.CtNYAXdqSTdtlkBcR0jfxbwJOh9QpSW"
+  },
+  {
+    "username": "ace123",
+    "password": "$2b$10$e8i2OzDuB.LHNotV3DbX6O9.np6D6Eezk0m7ZpG7SzspX/oxserg."
+  },
+  {
+    "username": "kikokiko",
+    "password": "$2b$10$WLIxFV0HTrSyHIzJEpl9Ee/1jeKATuGKhuEazcr4uPUIetXw95yg."
+  },
+  {
+    "username": "teo123",
+    "password": "$2b$10$YnMBhgrTyB6V19Y8A6KdnurZC9oZwg3w1UGjlpGZVrNbd2Cg.LYDq"
+  },
+  {
+    "email": "kikopostolov@gmail.com",
+    "username": "postolov",
+    "password": "$2b$10$njn8Tq1fNrwijaZAsu5DuO1KRTPhGlHWpu2t6rooziPHzVSQLERAi"
   }
 ]
