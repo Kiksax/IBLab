@@ -31,5 +31,12 @@
     "email": "kikopostolov@gmail.com",
     "username": "postolov",
     "password": "$2b$10$njn8Tq1fNrwijaZAsu5DuO1KRTPhGlHWpu2t6rooziPHzVSQLERAi"
+  },
+  {
+    "email": "dimitrievskyprod@gmail.com",
+    "username": "dimitrievsky",
+    "password": "$2b$10$thMu696A4yf5cmLgeCc2WOXcMXDWTJdV2ejH/zXn79YdFoZnS8v06",
+    "twoFAEnabled": false,
+    "otpSecret": null
   }
 ]
