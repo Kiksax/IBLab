@@ -15,7 +15,6 @@ app.use(express.static('public'));
 
 const usersFile = path.join(__dirname, 'users.json');
 
-// Nodemailer configuration
 const transporter = nodemailer.createTransport({
   service: process.env.EMAIL_SERVICE || 'gmail',
   auth: {
@@ -39,7 +38,6 @@ const generateOTP = () => {
   return Math.floor(100000 + Math.random() * 900000).toString();
 };
 
-// Send OTP via email
 const sendOTPEmail = async (email, otp) => {
   try {
     await transporter.sendMail({
@@ -82,7 +80,6 @@ app.post('/login', async (req, res) => {
   if (!user || !bcrypt.compareSync(password, user.password))
     return res.status(401).json({ message: 'Invalid credentials, try again' });
 
-  // Generate OTP and send via email
   const otp = generateOTP();
   const otpExpiry = Date.now() + 5 * 60 * 1000; // 5 minutes
 
@@ -101,7 +98,6 @@ app.post('/login', async (req, res) => {
   res.json({ message: 'OTP sent to your email', requiresOTP: true, email });
 });
 
-// OTP Verification
 app.post('/verify-otp', (req, res) => {
   const { username, otp } = req.body;
   const users = readUsers();
